@@ -4,11 +4,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.util.Assert;
 
 public class LoginTest {
 
     private LoginPage loginPage;
+    private DashboardPage dashboardPage;
 
     @BeforeEach
     public void beforeEach(){
@@ -20,6 +20,13 @@ public class LoginTest {
         loginPage.quit();
     }
 
+    @Test
+    public void deveRealizarLogin(){
+        dashboardPage = loginPage.preencherFormularioEEnviar();
 
+        Assertions.assertTrue(dashboardPage.isPaginaDashboard());
+        Assertions.assertEquals("manda user", dashboardPage.getNomeUsuario());
+        Assertions.assertTrue(dashboardPage.isVisivelAreaUsuario());
+    }
 
 }
